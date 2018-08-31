@@ -27,6 +27,9 @@
 		3A0796DF2138F18A0029F13E /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796DE2138F18A0029F13E /* TodoListPresenter.swift */; };
 		3A0796E12138F1A70029F13E /* TodoListInteractorIOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E02138F1A70029F13E /* TodoListInteractorIOProtocol.swift */; };
 		3A0796E32138F1CC0029F13E /* TodoListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E22138F1CC0029F13E /* TodoListInteractor.swift */; };
+		3A0796E52138F3660029F13E /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E42138F3650029F13E /* TodoListTableViewCell.swift */; };
+		3A0796E72138FB980029F13E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E62138FB980029F13E /* Constants.swift */; };
+		3A0796E9213902B10029F13E /* TodoListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E8213902B10029F13E /* TodoListViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		3A0796DE2138F18A0029F13E /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
 		3A0796E02138F1A70029F13E /* TodoListInteractorIOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListInteractorIOProtocol.swift; sourceTree = "<group>"; };
 		3A0796E22138F1CC0029F13E /* TodoListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListInteractor.swift; sourceTree = "<group>"; };
+		3A0796E42138F3650029F13E /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
+		3A0796E62138FB980029F13E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3A0796E8213902B10029F13E /* TodoListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,8 @@
 			children = (
 				3A0796C42138EDFA0029F13E /* TodoListViewController.swift */,
 				3A0796C72138EE660029F13E /* TodoList.storyboard */,
+				3A0796E42138F3650029F13E /* TodoListTableViewCell.swift */,
+				3A0796E8213902B10029F13E /* TodoListViewProtocol.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -201,6 +209,7 @@
 				3A0796A12138EAFC0029F13E /* AppDelegate.swift */,
 				3A0796A82138EAFF0029F13E /* Assets.xcassets */,
 				3A0796AA2138EAFF0029F13E /* LaunchScreen.storyboard */,
+				3A0796E62138FB980029F13E /* Constants.swift */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -292,15 +301,18 @@
 				3A0796D42138F0720029F13E /* TodoDetailedRouter.swift in Sources */,
 				3A0796CA2138EF4C0029F13E /* TodoDetailedInteractorIOProtocol.swift in Sources */,
 				3A0796C52138EDFA0029F13E /* TodoListViewController.swift in Sources */,
+				3A0796E9213902B10029F13E /* TodoListViewProtocol.swift in Sources */,
 				3A0796D62138F0A40029F13E /* TodoListRouterProtocol.swift in Sources */,
 				3A0796CE2138EFCF0029F13E /* TodoDetailedPresenterProtocol.swift in Sources */,
 				3A0796D02138F02A0029F13E /* TodoDetailedPresenter.swift in Sources */,
+				3A0796E52138F3660029F13E /* TodoListTableViewCell.swift in Sources */,
 				3A0796CC2138EF910029F13E /* TodoDetailedInteractor.swift in Sources */,
 				3A0796D82138F1160029F13E /* TodoListRouter.swift in Sources */,
 				3A0796C32138EDD40029F13E /* TodoDetailedViewController.swift in Sources */,
 				3A0796E12138F1A70029F13E /* TodoListInteractorIOProtocol.swift in Sources */,
 				3A0796DB2138F1510029F13E /* TodoItem.swift in Sources */,
 				3A0796A22138EAFC0029F13E /* AppDelegate.swift in Sources */,
+				3A0796E72138FB980029F13E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
