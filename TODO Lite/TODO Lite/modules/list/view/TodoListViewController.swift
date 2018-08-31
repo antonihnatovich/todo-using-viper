@@ -9,10 +9,41 @@
 import UIKit
 
 class TodoListViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyView: UIView!
+    
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // return presenter?.itemsCount ?? 0
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cell.todoItem.rawValue) as! TodoListTableViewCell
+//        if let todo = presenter?.todoFor(index: indexPath.row) {
+//            cell.update(with: todo)
+//        }
+        return cell
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension TodoListViewController: TodoListViewProtocol {
+    
+    func showEmptyView() {
+        emptyView.isHidden = false
+    }
+    
+    func hideEmptyView() {
+        emptyView.isHidden = true
+    }
+    
+    func showError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
