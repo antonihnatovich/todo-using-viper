@@ -13,13 +13,27 @@ protocol TodoItemProtocol: Codable {
     var name: String { get set }
     var category: String { get set }
     var date: Date { get set }
-    var isComlited: Bool { get set }
+    var isCompleted: Bool { get set }
 }
 
-struct TodoItem: TodoItemProtocol, Equatable {
+class TodoItem: TodoItemProtocol, Equatable {
+    
     var id: Int
     var name: String
     var category: String
     var date: Date
-    var isComlited: Bool
+    var isCompleted: Bool
+    
+    init(id: Int, name: String, category: String, date: Date, isCompleted: Bool) {
+        self.id = id
+        self.name = name
+        self.category = category
+        self.date = date
+        self.isCompleted = isCompleted
+    }
+    
+    static func == (lhs: TodoItem, rhs: TodoItem) -> Bool {
+        return lhs.id == rhs.id && lhs.name.elementsEqual(rhs.name)
+            && lhs.category.elementsEqual(rhs.category)
+    }
 }

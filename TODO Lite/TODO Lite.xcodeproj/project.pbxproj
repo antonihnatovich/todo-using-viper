@@ -30,6 +30,7 @@
 		3A0796E52138F3660029F13E /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E42138F3650029F13E /* TodoListTableViewCell.swift */; };
 		3A0796E72138FB980029F13E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E62138FB980029F13E /* Constants.swift */; };
 		3A0796E9213902B10029F13E /* TodoListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796E8213902B10029F13E /* TodoListViewProtocol.swift */; };
+		3A847702213A765B004B2E6D /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A847701213A765B004B2E6D /* StoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		3A0796E42138F3650029F13E /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
 		3A0796E62138FB980029F13E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3A0796E8213902B10029F13E /* TodoListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewProtocol.swift; sourceTree = "<group>"; };
+		3A847701213A765B004B2E6D /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		3A0796A02138EAFC0029F13E /* TODO Lite */ = {
 			isa = PBXGroup;
 			children = (
+				3A847700213A7644004B2E6D /* managers */,
 				3A0796D92138F13A0029F13E /* model */,
 				3A0796AD2138EAFF0029F13E /* Info.plist */,
 				3A0796C62138EE1D0029F13E /* support */,
@@ -222,6 +225,14 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		3A847700213A7644004B2E6D /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				3A847701213A765B004B2E6D /* StoreManager.swift */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -311,6 +322,7 @@
 				3A0796C32138EDD40029F13E /* TodoDetailedViewController.swift in Sources */,
 				3A0796E12138F1A70029F13E /* TodoListInteractorIOProtocol.swift in Sources */,
 				3A0796DB2138F1510029F13E /* TodoItem.swift in Sources */,
+				3A847702213A765B004B2E6D /* StoreManager.swift in Sources */,
 				3A0796A22138EAFC0029F13E /* AppDelegate.swift in Sources */,
 				3A0796E72138FB980029F13E /* Constants.swift in Sources */,
 			);
