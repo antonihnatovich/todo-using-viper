@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TodoItemProtocol {
+protocol TodoItemProtocol: Codable {
     var id: Int { get set }
     var name: String { get set }
     var category: String { get set }
