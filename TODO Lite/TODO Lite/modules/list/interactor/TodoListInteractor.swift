@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+class TodoListInteractor: TodoListInteractorInputProtocol {
+    
+    var presenter: TodoListInteractorOutputProtocol?
+    
+    func retrieveTodoItems() {
+        let items = TodoStoreManager<TodoItem>.readTodos()
+        presenter?.didRetrievedTodoItems(items: items)
+    }
+    
+    func remove<A: TodoItemProtocol>(todo: A) {
+        TodoStoreManager<A>.remove(todo: todo).perform()
+        presenter?.didRemoved(todo: todo)
+    }
+    
+    func add<A: TodoItemProtocol>(todo: A) {
+        TodoStoreManager<A>.add(todo: todo).perform()
+        presenter?.didAdd(todo: todo)
+    }
+}

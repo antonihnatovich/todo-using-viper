@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+protocol TodoListInteractorInputProtocol: class {
+    var presenter: TodoListInteractorOutputProtocol? { get set }
+    
+    func retrieveTodoItems()
+    func remove<A: TodoItemProtocol>(todo: A)
+    func add<A: TodoItemProtocol>(todo: A)
+}
+
+protocol TodoListInteractorOutputProtocol: class {
+    
+    func didRetrievedTodoItems(items: [TodoItemProtocol])
+    func didRemoved(todo: TodoItemProtocol)
+    func didAdd(todo: TodoItemProtocol)
+}
