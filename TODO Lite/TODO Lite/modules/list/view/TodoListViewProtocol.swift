@@ -8,9 +8,14 @@
 
 import Foundation
 
-protocol TodoListViewProtocol {
+protocol TodoListViewProtocol: class {
+    var presenter: TodoListPresenterProtocol? { get set }
+    
+    func refreshTodoList()
     func showEmptyView()
     func hideEmptyView()
     
     func showError(_ error: String)
+    func showLoading()
+    func hideLoading()
 }

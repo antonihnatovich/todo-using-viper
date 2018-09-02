@@ -8,30 +8,40 @@
 
 import UIKit
 
-class TodoListViewController: UIViewController {
+class TodoListViewController: UIViewController, TodoListViewProtocol {
+    var presenter: TodoListPresenterProtocol?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadTodos()
+    }
     
 }
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return presenter?.itemsCount ?? 0
-        return 0
+        return presenter?.todoCount ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.todoItem.rawValue) as! TodoListTableViewCell
-//        if let todo = presenter?.todoFor(index: indexPath.row) {
-//            cell.update(with: todo)
-//        }
+        if let todo = presenter?.todo(at: indexPath.row) {
+            cell.update(with: todo)
+        }
         return cell
     }
 }
 
-extension TodoListViewController: TodoListViewProtocol {
+// MARK: TodoListViewProtocol
+extension TodoListViewController {
+    
+    func refreshTodoList() {
+        tableView.reloadData()
+    }
     
     func showEmptyView() {
         emptyView.isHidden = false
@@ -45,5 +55,13 @@ extension TodoListViewController: TodoListViewProtocol {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func showLoading() {
+        print("loading")
+    }
+    
+    func hideLoading() {
+        print("hidden")
     }
 }

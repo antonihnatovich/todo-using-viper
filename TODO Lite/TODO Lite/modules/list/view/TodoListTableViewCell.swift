@@ -24,8 +24,8 @@ class TodoListTableViewCell: UITableViewCell {
     }
     
     func update(with todo: TodoItemProtocol) {
-        dateCreatedLabel.isHidden = todo.isComlited
-        completetedIndicatorLabel.isHidden = !todo.isComlited
+        dateCreatedLabel.isHidden = todo.isCompleted
+        completetedIndicatorLabel.isHidden = !todo.isCompleted
         
         nameLabel.text = todo.name
         categoryLabel.text = todo.category
