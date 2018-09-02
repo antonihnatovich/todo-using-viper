@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import UIKit
+
+protocol TodoListRouterProtocol: class {
+    static func initializeModule() -> UIViewController
+    
+    func presentDetailed(for todo: TodoItemProtocol, from view: TodoListViewProtocol)
+}
