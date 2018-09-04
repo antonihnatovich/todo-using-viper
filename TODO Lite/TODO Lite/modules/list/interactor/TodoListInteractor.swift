@@ -17,7 +17,7 @@ class TodoListInteractor: TodoListInteractorInputProtocol {
         presenter?.didRetrievedTodoItems(items: items)
     }
     
-    func remove<A: TodoItemProtocol>(todo: A) {
+    func removeItem<A: TodoItemProtocol>(todo: A) {
         TodoStoreManager<A>.remove(todo: todo).perform()
         presenter?.didRemoved(todo: todo)
     }

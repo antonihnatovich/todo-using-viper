@@ -16,10 +16,18 @@ class TodoListViewController: UIViewController, TodoListViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = "Awesome TODO's Bar"
         presenter?.loadTodos()
     }
     
+    // MARK: IBAction
+    
+    @IBAction func addTodoButtonDidPress(_ sender: UIBarButtonItem) {
+        presenter?.addTodo()
+    }
 }
+
+// MARK: UITableViewDelegate, UITableViewDataSource
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -34,13 +42,27 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            presenter?.removeTodo(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            if presenter?.todoCount ?? 0 == 0 { refreshTodoList() }
+        }
+    }
 }
 
 // MARK: TodoListViewProtocol
+
 extension TodoListViewController {
     
     func refreshTodoList() {
-        tableView.reloadData()
+        if presenter?.todoCount ?? 0 > 0 {
+            tableView.reloadData()
+            hideEmptyView()
+        } else {
+            showEmptyView()
+        }
     }
     
     func showEmptyView() {
@@ -51,17 +73,9 @@ extension TodoListViewController {
         emptyView.isHidden = true
     }
     
-    func showError(_ error: String) {
-        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+    func showError(_ error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-    
-    func showLoading() {
-        print("loading")
-    }
-    
-    func hideLoading() {
-        print("hidden")
     }
 }

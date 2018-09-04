@@ -75,13 +75,14 @@ enum TodoStoreManager<A: TodoItemProtocol> {
         case .add(let todo):
             var ids = UserDefaults.standard.string(forKey: UserDefaultsKey.id.rawValue) ?? ""
             defer { UserDefaults.standard.synchronize() }
-            ids += "\(todo.id)_"
+            ids += "_\(todo.id)"
             UserDefaults.standard.set(ids, forKey: UserDefaultsKey.id.rawValue)
             break
         case .remove(let todo):
             var ids = TodoStoreManager.todoIds()
             defer { UserDefaults.standard.synchronize() }
-            ids.removeAll(where: {$0.elementsEqual("\(todo.id)")})
+            guard let index = ids.index(where: {$0.elementsEqual("\(todo.id)")}) else { fatalError("UserDefaults does not contain such todo")}
+            ids.remove(at: index)
             let idsUpdated = ids.joined(separator: "_")
             UserDefaults.standard.set(idsUpdated, forKey: UserDefaultsKey.id.rawValue)
             break
@@ -95,5 +96,11 @@ enum TodoStoreManager<A: TodoItemProtocol> {
     
     private static func todoIds() -> [String] {
         return parseIds(from: UserDefaults.standard.string(forKey: UserDefaultsKey.id.rawValue) ?? "")
+    }
+    
+    static func highestId() -> Int {
+        var todoIds = TodoStoreManager.todoIds()
+        todoIds.sort(by: {Int($0) ?? 0 > Int($1) ?? 0})
+        return Int(todoIds.first ?? "0") ?? 0
     }
 }

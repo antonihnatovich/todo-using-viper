@@ -26,7 +26,6 @@ class TodoListPresenter: TodoListPresenterProtocol {
     
     func loadTodos() {
         interactor?.retrieveTodoItems()
-        view?.showLoading()
     }
     
     func todo(at index: Int) -> TodoItemProtocol {
@@ -34,11 +33,15 @@ class TodoListPresenter: TodoListPresenterProtocol {
     }
     
     func addTodo() {
-        // todo
+        // tmp solution
+        let idToSet = TodoStoreManager<TodoItem>.highestId() + 1
+        let todo = TodoItem(id: idToSet, name: "test todo #\(idToSet)", category: "rofls", date: Date(), isCompleted: false)
+        interactor?.add(todo: todo)
     }
     
     func removeTodo(at index: Int) {
-        // todo
+        guard let todo = todos[index] as? TodoItem else { fatalError("Chosen item to delete is not a TodoItem") }
+        interactor?.removeItem(todo: todo)
     }
     
     func presentTodo(at index: Int) {
@@ -46,7 +49,8 @@ class TodoListPresenter: TodoListPresenterProtocol {
     }
     
     func onError(_ error: Error) {
-        // todo
+        Swift.print("[TodoListPresenter] Error did emmit: \(error.localizedDescription)")
+        view?.showError(error)
     }
 }
 
@@ -55,15 +59,17 @@ extension TodoListPresenter: TodoListInteractorOutputProtocol {
     func didRetrievedTodoItems(items: [TodoItemProtocol]) {
         todos.removeAll()
         todos.append(contentsOf: items)
+        todos.reverse()
         view?.refreshTodoList()
-        view?.hideLoading()
     }
     
     func didRemoved(todo: TodoItemProtocol) {
-        // todo
+        guard let index = todos.index(where: {$0.id == todo.id}) else { fatalError("Index of chosen item could not be found") }
+        todos.remove(at: index)
     }
     
     func didAdd(todo: TodoItemProtocol) {
-        // todo
+        todos.insert(todo, at: 0)
+        view?.refreshTodoList()
     }
 }

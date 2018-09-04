@@ -12,7 +12,7 @@ protocol TodoListInteractorInputProtocol: class {
     var presenter: TodoListInteractorOutputProtocol? { get set }
     
     func retrieveTodoItems()
-    func remove<A: TodoItemProtocol>(todo: A)
+    func removeItem<A: TodoItemProtocol>(todo: A)
     func add<A: TodoItemProtocol>(todo: A)
 }
 

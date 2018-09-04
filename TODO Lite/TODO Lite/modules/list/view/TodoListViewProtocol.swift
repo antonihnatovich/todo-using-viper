@@ -15,7 +15,5 @@ protocol TodoListViewProtocol: class {
     func showEmptyView()
     func hideEmptyView()
     
-    func showError(_ error: String)
-    func showLoading()
-    func hideLoading()
+    func showError(_ error: Error)
 }
