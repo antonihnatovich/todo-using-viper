@@ -33,19 +33,12 @@ class TodoListPresenter: TodoListPresenterProtocol {
     }
     
     func addTodo() {
-        // tmp solution
-        let idToSet = TodoStoreManager<TodoItem>.highestId() + 1
-        let todo = TodoItem(id: idToSet, name: "test todo #\(idToSet)", category: "rofls", date: Date(), isCompleted: false)
-        interactor?.add(todo: todo)
+        router?.presentAddTodo(from: view!)
     }
     
     func removeTodo(at index: Int) {
         guard let todo = todos[index] as? TodoItem else { fatalError("Chosen item to delete is not a TodoItem") }
         interactor?.removeItem(todo: todo)
-    }
-    
-    func presentTodo(at index: Int) {
-        // todo
     }
     
     func onError(_ error: Error) {

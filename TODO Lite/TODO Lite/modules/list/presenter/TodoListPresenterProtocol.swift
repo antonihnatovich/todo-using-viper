@@ -19,6 +19,5 @@ protocol TodoListPresenterProtocol: class {
     func loadTodos()
     func addTodo()
     func removeTodo(at index: Int)
-    func presentTodo(at index: Int)
     func onError(_ error: Error)
 }
