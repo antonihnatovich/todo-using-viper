@@ -1,5 +1,5 @@
 //
-//  TodoDetailedViewController.swift
+//  AddTodoViewController.swift
 //  TODO Lite
 //
 //  Created by Anton Developer on 8/31/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoDetailedViewController: UIViewController {
+class AddTodoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
