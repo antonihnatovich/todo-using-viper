@@ -12,6 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static var shared: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         let controller = TodoListRouter.initializeModule()
         window = UIWindow(frame: UIScreen.main.bounds)
