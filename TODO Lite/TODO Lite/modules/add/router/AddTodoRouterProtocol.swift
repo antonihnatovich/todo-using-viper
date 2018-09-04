@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
+protocol AddTodoRouterProtocol: class {
+    static func initializeModule() -> UIViewController
+}
