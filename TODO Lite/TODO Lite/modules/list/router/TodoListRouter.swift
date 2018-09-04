@@ -28,4 +28,9 @@ class TodoListRouter: TodoListRouterProtocol {
     func presentDetailed(for todo: TodoItemProtocol, from view: TodoListViewProtocol) {
         
     }
+    
+    func presentAddTodo(from view: TodoListViewProtocol) {
+        let controller = AddTodoRouter.initializeModule()
+        (AppDelegate.shared.window?.rootViewController as? UINavigationController)?.viewControllers.last?.present(controller, animated: false, completion: nil)
+    }
 }

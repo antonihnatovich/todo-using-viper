@@ -13,4 +13,5 @@ protocol TodoListRouterProtocol: class {
     static func initializeModule() -> UIViewController
     
     func presentDetailed(for todo: TodoItemProtocol, from view: TodoListViewProtocol)
+    func presentAddTodo(from view: TodoListViewProtocol)
 }
