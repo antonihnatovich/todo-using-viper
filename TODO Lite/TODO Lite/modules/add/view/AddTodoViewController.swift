@@ -9,7 +9,6 @@
 import UIKit
 
 class AddTodoViewController: UIViewController, AddTodoViewProtocol {
-    var presenter: AddTodoPresenterProtocol?
     
     enum TextFieldType {
         case title
@@ -18,6 +17,8 @@ class AddTodoViewController: UIViewController, AddTodoViewProtocol {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
+    
+    var presenter: AddTodoPresenterProtocol?
     
     // MARK: Lifecycle
     
@@ -61,6 +62,8 @@ extension AddTodoViewController {
         }
     }
 }
+
+// MARK: UITextFieldDelegate
 
 extension AddTodoViewController: UITextFieldDelegate {
     
