@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+protocol AddTodoInteractorInputProtocol: class {
+    var presenter: AddTodoInteractorOutputProtocol? { get set }
+    func addTodo(with title: String, and category: String)
+}
+
+protocol AddTodoInteractorOutputProtocol: class {
+    func didAddTodo()
+}
