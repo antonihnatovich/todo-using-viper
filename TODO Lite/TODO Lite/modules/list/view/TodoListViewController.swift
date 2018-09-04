@@ -14,6 +14,11 @@ class TodoListViewController: UIViewController, TodoListViewProtocol {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         title = "Awesome TODO's Bar"

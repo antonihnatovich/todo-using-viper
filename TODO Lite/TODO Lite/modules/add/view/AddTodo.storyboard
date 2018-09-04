@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-aZ-xpR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yqw-Eq-hH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-aZ-xpR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.20000000000000001" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yqw-Eq-hH9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="extraLight"/>
@@ -89,7 +89,10 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="q3t-ac-FxA" id="kAI-3e-sQ9"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Awesome TODO category(max 20 symbols)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xqN-JZ-0ZF">
                                         <rect key="frame" x="32" y="64" width="311" height="48"/>
@@ -98,7 +101,10 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="q3t-ac-FxA" id="yco-Jp-YH9"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4d-mv-8gr">
                                         <rect key="frame" x="32" y="128" width="311" height="48"/>
@@ -143,14 +149,13 @@
                             <constraint firstItem="Owx-LW-zwE" firstAttribute="trailing" secondItem="2AD-aZ-xpR" secondAttribute="trailing" id="aB5-Zp-tJc"/>
                             <constraint firstItem="Owx-LW-zwE" firstAttribute="trailing" secondItem="HWu-Jt-4Oh" secondAttribute="trailing" id="cN8-R8-vZO"/>
                             <constraint firstItem="HWu-Jt-4Oh" firstAttribute="top" secondItem="68u-We-whf" secondAttribute="bottom" id="dpS-tj-hIh"/>
-                            <constraint firstItem="2AD-aZ-xpR" firstAttribute="top" secondItem="Owx-LW-zwE" secondAttribute="top" id="eWg-U7-0Fk"/>
+                            <constraint firstItem="2AD-aZ-xpR" firstAttribute="top" secondItem="4Cs-4P-med" secondAttribute="top" id="eWg-U7-0Fk"/>
                             <constraint firstAttribute="bottom" secondItem="HWu-Jt-4Oh" secondAttribute="bottom" id="tnP-fu-m3t"/>
                             <constraint firstItem="HWu-Jt-4Oh" firstAttribute="leading" secondItem="Owx-LW-zwE" secondAttribute="leading" id="zcp-s8-rTh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Owx-LW-zwE"/>
                     </view>
                     <connections>
-                        <outlet property="bluredBackground" destination="2AD-aZ-xpR" id="8AE-Ub-bYM"/>
                         <outlet property="categoryTextField" destination="xqN-JZ-0ZF" id="2kO-zc-Eza"/>
                         <outlet property="titleTextField" destination="CTG-9C-9CF" id="ZUx-E5-5vg"/>
                     </connections>

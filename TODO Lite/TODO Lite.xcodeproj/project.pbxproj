@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1696A876213E5BCC0003EEE2 /* AddTodoViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1696A875213E5BCC0003EEE2 /* AddTodoViewProtocol.swift */; };
 		3A0796A22138EAFC0029F13E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0796A12138EAFC0029F13E /* AppDelegate.swift */; };
 		3A0796A92138EAFF0029F13E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A0796A82138EAFF0029F13E /* Assets.xcassets */; };
 		3A0796AC2138EAFF0029F13E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0796AA2138EAFF0029F13E /* LaunchScreen.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1696A875213E5BCC0003EEE2 /* AddTodoViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewProtocol.swift; sourceTree = "<group>"; };
 		3A07969E2138EAFC0029F13E /* TODO Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TODO Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0796A12138EAFC0029F13E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0796A82138EAFF0029F13E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				3A0796C02138ED1A0029F13E /* AddTodo.storyboard */,
 				3A0796C22138EDD40029F13E /* AddTodoViewController.swift */,
+				1696A875213E5BCC0003EEE2 /* AddTodoViewProtocol.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				3A0796CA2138EF4C0029F13E /* AddTodoInteractorIOProtocol.swift in Sources */,
 				3A0796C52138EDFA0029F13E /* TodoListViewController.swift in Sources */,
 				3A0796E9213902B10029F13E /* TodoListViewProtocol.swift in Sources */,
+				1696A876213E5BCC0003EEE2 /* AddTodoViewProtocol.swift in Sources */,
 				3A0796D62138F0A40029F13E /* TodoListRouterProtocol.swift in Sources */,
 				3A0796CE2138EFCF0029F13E /* AddTodoPresenterProtocol.swift in Sources */,
 				3A0796D02138F02A0029F13E /* AddTodoPresenter.swift in Sources */,
