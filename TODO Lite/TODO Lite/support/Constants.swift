@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum Storyboard: String {
+    case add = "AddTodo"
+    case list = "TodoList"
+}
+
 enum Cell: String {
     case todoItem = "TodoListItemCell"
 }

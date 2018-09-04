@@ -13,7 +13,7 @@ class AddTodoRouter: AddTodoRouterProtocol {
     
     static func initializeModule() -> UIViewController {
         
-        let storyboard = UIStoryboard.init(name: "AddTodo", bundle: nil)
+        let storyboard = UIStoryboard.init(name: Storyboard.add.rawValue, bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController() as? AddTodoViewController else { fatalError("Could not instantiate AddTodoViewController") }
         
         let interactor: AddTodoInteractorInputProtocol = AddTodoInteractor()
