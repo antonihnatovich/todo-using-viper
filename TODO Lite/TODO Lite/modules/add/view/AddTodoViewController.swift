@@ -12,7 +12,7 @@ class AddTodoViewController: UIViewController, AddTodoViewProtocol {
     
     enum TextFieldType {
         case title
-        case categoy
+        case category
     }
     
     @IBOutlet weak var titleTextField: UITextField!
@@ -53,7 +53,7 @@ extension AddTodoViewController {
     
     func showError(for textFieldType: AddTodoViewController.TextFieldType) {
         switch textFieldType {
-        case .categoy:
+        case .category:
             categoryTextField.becomeFirstResponder()
             break
         case .title:
@@ -77,7 +77,9 @@ extension AddTodoViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty  { return true }
         guard let text = textField.text, text.count < 20 else { return false }
+        if textField == categoryTextField && text.count > 0 { return false }
         return true
     }
 }

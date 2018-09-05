@@ -12,7 +12,7 @@ class AddTodoInteractor: AddTodoInteractorInputProtocol {
     var presenter: AddTodoInteractorOutputProtocol?
     
     func addTodo(with title: String, and category: String) {
-        let todo = TodoItem(id: TodoStoreManager<TodoItem>.highestId(), name: title, category: category, date: Date(), isCompleted: false)
+        let todo = TodoItem(id: TodoStoreManager<TodoItem>.highestId() + 1, name: title, category: category, date: Date(), isCompleted: false)
         TodoStoreManager<TodoItem>.add(todo: todo).perform()
         presenter?.didAddTodo()
     }

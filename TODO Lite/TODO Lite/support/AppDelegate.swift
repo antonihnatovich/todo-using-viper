@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var shared: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        ActualDataObserverManager.checkIfDateIsOver()
+        
         let controller = TodoListRouter.initializeModule()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = controller

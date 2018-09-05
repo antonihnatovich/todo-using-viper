@@ -21,7 +21,7 @@ class TodoListViewController: UIViewController, TodoListViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        title = "Awesome TODO's Bar"
+        title = "Awesome TODO's for TODAY"
         presenter?.loadTodos()
     }
     

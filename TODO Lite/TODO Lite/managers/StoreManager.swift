@@ -8,6 +8,33 @@
 
 import Foundation
 
+enum ActualDataObserverManager {
+    
+    enum DateKeys: String {
+        case login = "com.antonson.todolite.time"
+    }
+    
+    static func checkIfDateIsOver() {
+        let dateFormatter = DateFormatter()
+        guard let previewsAppEntryDate = UserDefaults.standard.string(forKey: DateKeys.login.rawValue), let date = dateFormatter.date(from: previewsAppEntryDate) else {
+            ActualDataObserverManager.renewLoginDate()
+            return
+        }
+        
+        if Calendar.current.isDateInYesterday(date) {
+            ActualDataObserverManager.renewLoginDate()
+            TodoStoreManager<TodoItem>.removeAll().perform()
+        }
+    }
+    
+    static func renewLoginDate() {
+        defer { UserDefaults.standard.synchronize() }
+        let dateFormatter = DateFormatter()
+        let todaysParams = dateFormatter.string(from: Date())
+        UserDefaults.standard.set(todaysParams, forKey: DateKeys.login.rawValue)
+    }
+}
+
 enum TodoStoreManager<A: TodoItemProtocol> {
     
     private enum UserDefaultsKey: String {
@@ -25,6 +52,7 @@ enum TodoStoreManager<A: TodoItemProtocol> {
     
     case add(todo: A)
     case remove(todo: A)
+    case removeAll()
     
     func perform() {
         switch self {
@@ -33,6 +61,9 @@ enum TodoStoreManager<A: TodoItemProtocol> {
             break
         case .remove(let todo):
             self.remove(for: todo)
+            break
+        case .removeAll:
+            self.removeAll()
             break
         }
     }
@@ -70,6 +101,13 @@ enum TodoStoreManager<A: TodoItemProtocol> {
         updateIdList()
     }
     
+    private func removeAll() {
+        defer { UserDefaults.standard.synchronize() }
+        TodoStoreManager<TodoItem>.todoIds()
+            .forEach({ UserDefaults.standard.removeObject(forKey: UserDefaultsKey.todo.rawValue + $0)})
+        updateIdList()
+    }
+    
     private func updateIdList() {
         switch self {
         case .add(let todo):
@@ -83,8 +121,12 @@ enum TodoStoreManager<A: TodoItemProtocol> {
             defer { UserDefaults.standard.synchronize() }
             guard let index = ids.index(where: {$0.elementsEqual("\(todo.id)")}) else { fatalError("UserDefaults does not contain such todo")}
             ids.remove(at: index)
-            let idsUpdated = ids.joined(separator: "_")
+            let idsUpdated = "_" + ids.joined(separator: "_")
             UserDefaults.standard.set(idsUpdated, forKey: UserDefaultsKey.id.rawValue)
+            break
+        case .removeAll:
+            defer { UserDefaults.standard.synchronize() }
+            UserDefaults.standard.removeObject(forKey: UserDefaultsKey.id.rawValue)
             break
         }
     }

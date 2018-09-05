@@ -26,8 +26,8 @@ class AddTodoPresenter: AddTodoPresenterProtocol {
             view?.showError(for: .title)
             return
         }
-        guard let category = category, !category.isEmpty else {
-            view?.showError(for: .categoy)
+        guard let category = category, !category.isEmpty, category.count > 0, (category.contains {["A", "B", "C", "D", "E"].contains($0)}) else {
+            view?.showError(for: .category)
             return
         }
         
