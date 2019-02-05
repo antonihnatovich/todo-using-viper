@@ -15,8 +15,11 @@ class AddTodoViewController: UIViewController, AddTodoViewProtocol {
         case category
     }
     
+    @IBOutlet weak var addViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
+    
+    var categoryPicker = UIPickerView()
     
     var presenter: AddTodoPresenterProtocol?
     
@@ -24,8 +27,12 @@ class AddTodoViewController: UIViewController, AddTodoViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(AddTodoViewController.keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AddTodoViewController.keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddTodoViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddTodoViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        categoryPicker.delegate = self
+        categoryTextField.inputView = categoryPicker
+//        setupToolbarAsAccessoryViewFor(textField: categoryTextField)
     }
     
     deinit {
@@ -35,7 +42,7 @@ class AddTodoViewController: UIViewController, AddTodoViewProtocol {
     // MARK: IBAction
     
     @IBAction func addTodoButtonDidPress(_ sender: UIButton) {
-        presenter?.addTodo(with: titleTextField.text, and: categoryTextField.text)
+        presenter?.addTodo(with: titleTextField.text)
     }
     
     @IBAction func closeButtonDidPress(_ sender: UIButton) {
@@ -71,7 +78,7 @@ extension AddTodoViewController: UITextFieldDelegate {
         if textField == titleTextField { categoryTextField.becomeFirstResponder() }
         if textField == categoryTextField {
             view.resignFirstResponder()
-            presenter?.addTodo(with: titleTextField.text, and: categoryTextField.text)
+            presenter?.addTodo(with: titleTextField.text)
         }
         return true
     }
@@ -88,19 +95,56 @@ extension AddTodoViewController: UITextFieldDelegate {
 extension AddTodoViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            guard addViewBottomConstraint.constant == 0 else { return }
+            addViewBottomConstraint.constant += keyboardSize.height
         }
         
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            addViewBottomConstraint.constant = 0
         }
+    }
+}
+
+// MARK: UIPickerViewDelegate, UIPickerViewDataSource
+
+extension AddTodoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return presenter?.todoPriorities.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return presenter?.todoPriorities[row].visual
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = presenter?.todoPriorities[row].visual
+        presenter?.todoItemPriority = presenter?.todoPriorities[row]
+    }
+}
+
+// MARK: Helper
+
+extension AddTodoViewController {
+
+    private func setupToolbarAsAccessoryViewFor(textField: UITextField) {
+        textField.inputAccessoryView = nil
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        let closeButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeInputView(button:)))
+        toolBar.items = [closeButton]
+        toolBar.setItems([closeButton], animated: true)
+        textField.inputAccessoryView = toolBar
+    }
+    
+    @objc private func closeInputView(button: UIBarButtonItem) {
+        self.view.endEditing(true)
     }
 }

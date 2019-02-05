@@ -28,7 +28,7 @@ class TodoListTableViewCell: UITableViewCell {
         completetedIndicatorLabel.isHidden = !todo.isCompleted
         
         nameLabel.text = todo.name
-        categoryLabel.text = todo.category
+        categoryLabel.text = TodoItem.TodoPriority(rawValue: todo.priority)?.visual
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = AppRelative.datentime.rawValue

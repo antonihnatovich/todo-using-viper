@@ -52,7 +52,7 @@ extension TodoListPresenter: TodoListInteractorOutputProtocol {
     func didRetrievedTodoItems(items: [TodoItemProtocol]) {
         todos.removeAll()
         todos.append(contentsOf: items)
-        todos.sort(by: { $0.category < $1.category })
+        todos.sort(by: { $0.priority < $1.priority })
         view?.refreshTodoList()
     }
     
@@ -63,7 +63,7 @@ extension TodoListPresenter: TodoListInteractorOutputProtocol {
     
     func didAdd(todo: TodoItemProtocol) {
         todos.append(todo)
-        todos.sort(by: { $0.category < $1.category })
+        todos.sort(by: { $0.priority < $1.priority })
         view?.refreshTodoList()
     }
 }

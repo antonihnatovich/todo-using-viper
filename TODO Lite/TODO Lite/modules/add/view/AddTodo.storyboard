@@ -102,7 +102,7 @@
                                                     <outlet property="delegate" destination="q3t-ac-FxA" id="kAI-3e-sQ9"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Priority([high -&gt; low] A, B, C, D, E)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xqN-JZ-0ZF">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Priority(high -&gt; low)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xqN-JZ-0ZF">
                                                 <rect key="frame" x="32" y="64" width="311" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="k8m-PF-l7a"/>
@@ -173,6 +173,7 @@
                         <viewLayoutGuide key="safeArea" id="Owx-LW-zwE"/>
                     </view>
                     <connections>
+                        <outlet property="addViewBottomConstraint" destination="npQ-0S-Ye4" id="9XF-Xc-ata"/>
                         <outlet property="categoryTextField" destination="xqN-JZ-0ZF" id="2kO-zc-Eza"/>
                         <outlet property="titleTextField" destination="CTG-9C-9CF" id="ZUx-E5-5vg"/>
                     </connections>

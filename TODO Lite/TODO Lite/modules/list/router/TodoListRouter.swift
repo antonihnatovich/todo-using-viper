@@ -13,7 +13,7 @@ class TodoListRouter: TodoListRouterProtocol {
     static func initializeModule() -> UIViewController {
         let storyboard = UIStoryboard.init(name: Storyboard.list.rawValue, bundle: nil)
         let navController = storyboard.instantiateInitialViewController() as? UINavigationController
-        guard let navControllerUnwpd = navController, let view = navControllerUnwpd.childViewControllers.first as? TodoListViewController else { fatalError("Could not instantiate TodoListViewController") }
+        guard let navControllerUnwpd = navController, let view = navControllerUnwpd.children.first as? TodoListViewController else { fatalError("Could not instantiate TodoListViewController") }
         
         let interactor: TodoListInteractorInputProtocol = TodoListInteractor()
         let router: TodoListRouterProtocol = TodoListRouter()

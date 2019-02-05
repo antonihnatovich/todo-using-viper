@@ -14,24 +14,27 @@ class AddTodoPresenter: AddTodoPresenterProtocol {
     var interactor: AddTodoInteractorInputProtocol?
     var router: AddTodoRouterProtocol?
     
+    var todoPriorities: [TodoItem.TodoPriority] = TodoItem.TodoPriority.all
+    var todoItemPriority: TodoItem.TodoPriority?
+    
     init(view: AddTodoViewProtocol?, interactor: AddTodoInteractorInputProtocol, router: AddTodoRouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router
     }
     
-    func addTodo(with title: String?, and category: String?) {
+    func addTodo(with title: String?) {
         
         guard let title = title, !title.isEmpty else {
             view?.showError(for: .title)
             return
         }
-        guard let category = category, !category.isEmpty, category.count > 0, (category.contains {["A", "B", "C", "D", "E"].contains($0)}) else {
+        guard let priority = todoItemPriority else {
             view?.showError(for: .category)
             return
         }
         
-        interactor?.addTodo(with: title, and: category)
+        interactor?.addTodo(with: title, and: priority.rawValue)
     }
 }
 

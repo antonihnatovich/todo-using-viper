@@ -10,7 +10,7 @@ import Foundation
 
 protocol AddTodoInteractorInputProtocol: class {
     var presenter: AddTodoInteractorOutputProtocol? { get set }
-    func addTodo(with title: String, and category: String)
+    func addTodo(with title: String, and priority: Int)
 }
 
 protocol AddTodoInteractorOutputProtocol: class {
